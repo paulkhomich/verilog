@@ -20,68 +20,68 @@ module test;
     initial #128 $finish;
 
     // Добавление чисел в очередь
-    initial #2 in = 8'd20;
-    initial #2 op = 3'd5;
-    initial #4 apply = 1;
-    initial #16 apply = 0;
+    initial #1 in = 8'd20;
+    initial #1 op = 3'd5;
+    initial #3 apply = 1;
+    initial #15 apply = 0;
 
     // Сложение
-    initial #20 op = 3'd0;
-    initial #22 apply = 1;
-    initial #24 apply = 0;
+    initial #19 op = 3'd0;
+    initial #21 apply = 1;
+    initial #23 apply = 0;
 
     // Вычитание
-    initial #28 op = 3'd1;
-    initial #30 apply = 1;
-    initial #32 apply = 0;
+    initial #27 op = 3'd1;
+    initial #29 apply = 1;
+    initial #31 apply = 0;
 
     // Произведение
-    initial #36 op = 3'd2;
-    initial #38 apply = 1;
-    initial #40 apply = 0;
+    initial #35 op = 3'd2;
+    initial #37 apply = 1;
+    initial #39 apply = 0;
 
     // Деление целое
-    initial #44 op = 3'd3;
-    initial #46 apply = 1;
-    initial #48 apply = 0;
+    initial #43 op = 3'd3;
+    initial #45 apply = 1;
+    initial #47 apply = 0;
 
     // Деление дробное
-    initial #52 op = 3'd4;
-    initial #54 apply = 1;
-    initial #56 apply = 0;
+    initial #51 op = 3'd4;
+    initial #53 apply = 1;
+    initial #55 apply = 0;
 
     // Извлечение (До empty очереди)
     // + Некорректность (Извлечение из пустой очереди)
-    initial #60 op = 3'd6;
-    initial #62 apply = 1;
-    initial #66 apply = 0;
+    initial #59 op = 3'd6;
+    initial #61 apply = 1;
+    initial #65 apply = 0;
 
     // Сброс
     initial #68 rst = 1;
     initial #69 rst = 0;
 
     // Некорректность кода операции
-    initial #70 op = 3'd7;
-    initial #72 apply = 1;
-    initial #74 apply = 0;
+    initial #69 op = 3'd7;
+    initial #71 apply = 1;
+    initial #73 apply = 0;
 
     // Сброс
     initial #76 rst = 1;
     initial #77 rst = 0;
 
     // Некорректность переполнения
-    initial #78 op = 3'd5;
-    initial #80 apply = 1;
-    initial #106 apply = 0;
+    initial #77 op = 3'd5;
+    initial #79 apply = 1;
+    initial #105 apply = 0;
 
      // Сброс
     initial #108 rst = 1;
     initial #109 rst = 0;
 
     // Некорректность — деление на 0
-    initial #110 in = 8'd0;
-    initial #112 apply = 1;
-    initial #114 in = 8'd255;
-    initial #116 op = 3'd3;
+    initial #109 in = 8'd0;
+    initial #111 apply = 1;
+    initial #113 in = 8'd255;
+    initial #115 op = 3'd3;
 
 endmodule

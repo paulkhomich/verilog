@@ -19,24 +19,24 @@ module main #(parameter W = 8) (
 
     assign valid = validQueue & validMain;  // корректно если очередь и операция корректны
 
-    always @(posedge clk) begin // Как я понял — операция некорректна, если деление на ноль хотят применить(!)
-        case (op)
-            3'd3: if (first == 0 && apply) validMain = 0;
-            3'd4: if (first == 0 && apply) validMain = 0;
-        endcase
+    always @(posedge clk, posedge rst) begin
+        if (rst) validMain <= 1;
+        else begin
+            case (op)
+                3'd3: if (first == 0 && apply) validMain <= 0;
+                3'd4: if (first == 0 && apply) validMain <= 0;
+            endcase
+        end
     end
 
     always @(*) begin
-        if (rst) validMain = 1;
-        else begin
-            case (op)
-                3'd0: inToQueue = first + second; 
-                3'd1: inToQueue = first - second;
-                3'd2: inToQueue = first * second; 
-                3'd3: inToQueue = second / first; 
-                3'd4: inToQueue = second % first; 
-                default: inToQueue = in;
-            endcase
-        end
+        case (op)
+            3'd0: inToQueue = first + second; 
+            3'd1: inToQueue = first - second;
+            3'd2: inToQueue = first * second; 
+            3'd3: inToQueue = second / first; 
+            3'd4: inToQueue = second % first; 
+            default: inToQueue = in;
+        endcase
     end
 endmodule

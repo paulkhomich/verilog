@@ -16,6 +16,8 @@ module main(x, y, s, b, on, start, regime, active, clk, rst);
   
   /* ОБЪЯВЛЕНИЯ ТОЧЕК */
 
+  wire sIs6;
+
   data_path _data_path(
     // данные
     .x(x),
@@ -32,8 +34,9 @@ module main(x, y, s, b, on, start, regime, active, clk, rst);
     .s_zero(s_zero),
     // такт и сброс
     .clk(clk),
-    .rst(rst)
+    .rst(rst),
     /* ДОБАВЛЕННЫЕ ПОРТЫ */
+    .sIs6(sIs6)
   );
   control_path _control_path(
     // подключения к портам схемы
@@ -51,7 +54,8 @@ module main(x, y, s, b, on, start, regime, active, clk, rst);
     .s_zero(s_zero),
     // такт и сброс
     .clk(clk),
-    .rst(rst)
+    .rst(rst),
     /* ДОБАВЛЕННЫЕ ПОРТЫ */
+    .sIs6(sIs6)
   );
 endmodule

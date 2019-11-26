@@ -1,7 +1,7 @@
 // Новые порты и точки объявлять в начале модуля под соответствующим комментарием. Комментарий не стирать.
 // Имена новых портов записать вместо соответствующего комментария в начале объявления модуля.
 // Новые подсхемы дописывать в конце модуля под соответствующим комментарием. Комментарий не стирать.
-module data_path(x, y, s, b, y_select_next, s_step, y_en, s_en, y_store_x, s_add, s_zero, clk, rst /* , ... (ИМЕНА НОВЫХ УПРАВЛЯЮЩИХ ПОРТОВ */);
+module data_path(x, y, s, b, y_select_next, s_step, y_en, s_en, y_store_x, s_add, s_zero, clk, rst, sIs6 /* , ... (ИМЕНА НОВЫХ УПРАВЛЯЮЩИХ ПОРТОВ */);
   input [7:0] x;
   input [1:0] y_select_next, s_step;
   input clk, rst, y_en, s_en, y_store_x, s_add, s_zero;
@@ -11,6 +11,8 @@ module data_path(x, y, s, b, y_select_next, s_step, y_en, s_en, y_store_x, s_add
   
   /* ОБЪЯВЛЕНИЯ НОВЫХ УПРАВЛЯЮЩИХ ПОРТОВ И НОВЫХ ВНУТРЕННИХ ТОЧЕК */
   
+  output sIs6;
+
   wire [7:0] y_in;
   reg [7:0] y_next;
   wire [2:0] s_in, s_base;
@@ -52,4 +54,7 @@ module data_path(x, y, s, b, y_select_next, s_step, y_en, s_en, y_store_x, s_add
   assign s_base = s_zero ? 0 : s;
   
   /* РЕАЛИЗАЦИЯ ПОДСХЕМ ДЛЯ ПРЕОБРАЗОВАНИЯ ДАННЫХ В УПРАВЛЕНИЕ */
+
+  assign sIs6 = s == 3'd6;
+
 endmodule

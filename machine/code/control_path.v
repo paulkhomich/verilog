@@ -7,8 +7,8 @@ module control_path(on, start, regime, active, y_select_next, s_step, y_en, s_en
   input start, clk, rst;
   output reg [1:0] regime;
   output reg active;
-  output /* reg */ [1:0] y_select_next;
-  output /* reg */ [1:0] s_step;
+  output reg [1:0] y_select_next;
+  output reg [1:0] s_step;
   output /* reg */ y_en;
   output /* reg */ s_en;
   output /* reg */ y_store_x;
@@ -81,47 +81,42 @@ module control_path(on, start, regime, active, y_select_next, s_step, y_en, s_en
 
   // следующее состояние активности
   always @(*) begin
-    if (regime == R1 && active == 0 && start) begin
-       next_active = 1'd1;
-       s_zero = 1'd1;
-    end
+    if (regime == R1 && active == 0 && start) next_active = 1'd1;
     else if (sIs6 && counter_r1 == 0) next_active = 0;
     else next_active = active;
   end
 
+  // s_zero: вызываем ноль, вместо текущего s
+  assign s_zero = regime == R1 && active == 0 && start;
+
   // s_step: шаг для изменения s
   always @(*) begin
-    case(regime) begin
+    case(regime)
       R1: if (active) s_step = 2'd2;
       else s_step = 2'd0;
       R2: s_step = 2'd1;
       R3: s_step = 2'd1;
       default: s_step = 2'd0;
-    end 
+    endcase
   end
 
   // s_add: сложение или вычитание шага и s
-  always @(*) begin
-    case(regime) begin
-      R1, R3: s_add = 1'b1;
-      default: s_add = 1'b0;
-    end
-  end
+  assign s_add = (regime == R1) || (regime == R3);
 
   // y_select_next: операция со следующим значением y
   always @(*) begin
-    case(regime) begin
+    case(regime)
       R2: y_select_next = 2'd1;
       R3: if (counter_r3 == 2'd2) y_select_next = 2'd3;
       else y_select_next = 2'd0;
       default: y_select_next = 2'd0;
-    end
+    endcase
   end
 
   // s_en: Разрешаем запись в S-регистр 
-  assign s_en = (counter_r1 == 0) || (regime == R1) || (counter_r3 == 2'd1);
+  assign s_en = (regime == R1 && active == 0 && start) || (counter_r1 == 0) || (regime == R2) || (counter_r3 == 2'd1);
 
   // y_en: Разрешаем запись в Y-регистр
-  assign y_en = sIs6 || (counter_r3 > 2'd1);
+  assign y_en = (regime == R2 && sIs6) || (regime == R3 && counter_r3 > 2'd1);
   
 endmodule

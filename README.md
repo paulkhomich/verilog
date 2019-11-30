@@ -1,3 +1,4 @@
 # verilog
-Verilog Developments
-`drafts` for small elements/projects
+Verilog Developments 
+
+`drafts`  for small elements/projects

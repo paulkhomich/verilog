@@ -1,0 +1,44 @@
+$date
+	Mon Dec 16 00:09:54 2019
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module test_alu4 $end
+$var wire 1 ! zero $end
+$var wire 32 " y [31:0] $end
+$var wire 1 # overflow $end
+$var reg 32 $ a [31:0] $end
+$var reg 32 % b [31:0] $end
+$var reg 3 & f [2:0] $end
+$scope module testee $end
+$var wire 32 ' a [31:0] $end
+$var wire 32 ( b [31:0] $end
+$var wire 3 ) f [2:0] $end
+$var wire 1 ! zero $end
+$var wire 1 # overflow $end
+$var wire 32 * _b [31:0] $end
+$var wire 33 + _ab [32:0] $end
+$var reg 32 , y [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1 ,
+b11111111111111111111111111111000 +
+b11111111111111111111111111101111 *
+b111 )
+b10000 (
+b1000 '
+b111 &
+b10000 %
+b1000 $
+0#
+b1 "
+0!
+$end
+#64

@@ -4,7 +4,7 @@ module registerPro
     input   logic           clk, rst, clr, ld, shl, shlIn   ,
     output  logic [w-1:0]   q
 );
-    localparam logic [w-1:0] DEFAULT = '0;
+    localparam logic [w-1:0] DEFAULT = 'b0;
 
     always_ff @(posedge clk, posedge rst) begin
         if (rst || clr)     q <= DEFAULT;

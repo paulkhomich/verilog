@@ -4,3 +4,4 @@
 
 *.out
 *.vcd
+*.code-workspace

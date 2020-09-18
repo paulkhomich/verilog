@@ -1,5 +1,8 @@
-# verilog
-Verilog Developments 
+# verilog 
+Verilog и SystemVerilog модули
 
-`_book`  for exercises in SystemVerilog book (Donald Thomas)
-`_testing`  for small elements/projects
+`book` — упражнения из книги по SystemVerilog (Donald Thomas)
+
+`tng` — тренировочные модули
+
+
